@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(routes);
 
 // if we're in production, serve client/build as static assets
-if (process.env.NODE_ENV === "production") {
+if (true || process.env.NODE_ENV === "production") {
   console.log("Production");
   app.use(express.static(path.join(__dirname, "../client/build")));
 }

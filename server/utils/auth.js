@@ -39,6 +39,10 @@ module.exports = {
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
   context: ({ req }) => {
+    if (!req.headers.authorization) {
+      return {};
+    }
+
     const { data: user } = jwt.decode(
       req.headers.authorization.split("Bearer ")[1]
     );
