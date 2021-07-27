@@ -28,12 +28,13 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(routes);
+
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === "production") {
+  console.log("Production");
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
-
-app.use(routes);
 
 db.once("open", () => {
   app.listen(PORT, () => {
